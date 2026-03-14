@@ -21,7 +21,7 @@ if(!isset($_SESSION['uid'])){
         <form action="add_doctor.php" method="post">
             <div class="form-group mb-2">
                 <label for="">Name</label>
-                <input type="text" name="doctor" class="form-control">
+                <input type="text" name="name" class="form-control">
             </div>
             <div class="form-group mb-2">
                 <label for="">Education</label>
