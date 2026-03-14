@@ -16,8 +16,8 @@
             Doctor
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Add Doctor</a></li>
-            <li><a class="dropdown-item" href="#">View Doctor</a></li>
+            <li><a class="dropdown-item" href="add_doctor.php">Add Doctor</a></li>
+            <li><a class="dropdown-item" href="view_doctor.php">View Doctor</a></li>
           </ul>
         </li>
          <li class="nav-item dropdown">
@@ -30,7 +30,10 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link btn btn-danger" aria-current="page" href="logout.php">Welcome to <?= $_SESSION['uname']  ?> Logout</a>
+         <span class="text-white"> Welcome to <?= $_SESSION['uname']  ?> </span> 
+        </li>
+        <li>
+          <a class="nav-link btn btn-danger btn-sm"  href="logout.php">Logout</a>
         </li>
       </ul>
      
