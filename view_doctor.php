@@ -56,7 +56,7 @@ if(isset($_GET['delid'])){
                         <td><?= $doctors['name'] ?></td>
                         <td><?= $doctors['education'] ?></td>
                         <td><?= $doctors['speciality'] ?></td>
-                        <td><?= $doctors['day_timing'] ?></td>
+                        <td><?= $doctors['timing_days'] ?></td>
                         <td><?= $doctors['fee'] ?></td>
                         <td>
                             <?php  if($doctors['status'] == 1){

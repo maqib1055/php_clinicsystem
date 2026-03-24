@@ -43,7 +43,7 @@ if(isset($_GET['id'])){
             </div>
             <div class="form-group mb-2">
                 <label for="">Days/Timing</label>
-                <input type="text" name="days_timing" value="<?= $doctors['day_timing']  ?>" class="form-control">
+                <input type="text" name="days_timing" value="<?= $doctors['timing_days']  ?>" class="form-control">
             </div>
             <div class="form-group mb-2">
                 <label for="">Fee</label>
@@ -71,7 +71,7 @@ if(isset($_POST['btnUpdate'])){
 
     $query = mysqli_query($conn, "UPDATE `doctors` SET `name`='$name',
     `education`='$education',`speciality`='$speciality',
-    `day_timing`='$days_timing',`fee`='$fee' WHERE doctorid = '$doctorid'");
+    `timing_days`='$days_timing',`fee`='$fee' WHERE doctorid = '$doctorid'");
 
     if($query == true){
         echo "<script> alert('doctor updated'); window.location.href='view_doctor.php'; </script>";

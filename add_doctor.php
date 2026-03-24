@@ -58,7 +58,7 @@ if(isset($_POST['btnAdd'])){
     $fee            = $_POST['fee'];
 
     $query = mysqli_query($conn, "INSERT INTO `doctors`(`name`, `education`, 
-    `speciality`, `day_timing`, `fee`) VALUES ('$name','$education','$speciality',
+    `speciality`, `timing_days`, `fee`) VALUES ('$name','$education','$speciality',
     '$days_timing','$fee')");
 
     if($query == true){

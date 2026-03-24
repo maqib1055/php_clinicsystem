@@ -31,8 +31,9 @@
             Book Appointment
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Book Appointment</a></li>
-            <li><a class="dropdown-item" href="#">View Appointment</a></li>
+            <li><a class="dropdown-item" href="add_opd.php">Book Appointment</a></li>
+            <li><a class="dropdown-item" href="view_opd.php">View Appointment</a></li>
+           
           </ul>
         </li>
         <li class="nav-item">
