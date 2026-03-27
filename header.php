@@ -33,6 +33,8 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="add_opd.php">Book Appointment</a></li>
             <li><a class="dropdown-item" href="view_opd.php">View Appointment</a></li>
+            <li><a class="dropdown-item" href="opd_report.php">OPD Report</a></li>
+           
            
           </ul>
         </li>
