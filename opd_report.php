@@ -24,8 +24,9 @@ if(!isset($_SESSION['uid'])){
             <input type="submit" name="btnReport" class="btn btn-primary"> 
         </form>
 
+        
        
-        <table class="table">
+        <table class="table" >
          <thead>
             <tr>
                 <th>Token#</th>
@@ -114,5 +115,8 @@ if(!isset($_SESSION['uid'])){
         ?>
         </table>
     </div>
+
+    
+
 </body>
 </html>

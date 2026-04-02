@@ -1,10 +1,17 @@
 <?php
 
+
 include 'connect.php';
+
+require  "vendor/autoload.php";
+
+
 
 if(!isset($_SESSION['uid'])){
     header('Location: index.php');
 }
+
+$url = "https://alaqsa.approxsol.com/products.php";
 
 $id = $_GET['id'];
 
@@ -13,7 +20,18 @@ $query = "SELECT opd.opdid, doctors.name, doctors.speciality, doctors.fee, opd.p
 $result = mysqli_query($conn, $query);
 $slipData = mysqli_fetch_array($result);
 
-// print_r($slipData);
+
+//QR Code 
+$token_no = $slipData['token_no'];
+$qrcode = "https://quickchart.io/qr?text='".urlencode($token_no)."'";
+
+//barcode
+
+$generator = new Picqer\Barcode\BarcodeGeneratorPNG();
+
+$barcodeImg = "barcode/" . time() . ".png";
+file_put_contents($barcodeImg, $generator->getBarcode($token_no, $generator::TYPE_CODE_128));
+
 
 ?>
 <!DOCTYPE html>
@@ -56,6 +74,7 @@ hr{
     
 <div class="center">
     <h3>Mini Clinic</h3>
+    <img src="<?= $barcodeImg ?>" alt="">
 </div>
 
 <hr>
@@ -75,7 +94,10 @@ hr{
 
 <div class="center small">
     Thank You <br>
-    Get Well Soon
+    Get Well Soon <br>
+
+    <img src="<?= $qrcode ?>" alt="">
+   
 </div>
 
 
