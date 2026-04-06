@@ -39,6 +39,9 @@
           </ul>
         </li>
         <li class="nav-item">
+          <a href="exportreport.php" class="nav-link">Export CSV</a>
+        </li>
+        <li class="nav-item">
          <span class="text-dark"> Welcome to <?= $_SESSION['uname']  ?> </span> 
         </li>
         <li>
