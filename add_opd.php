@@ -76,7 +76,7 @@ if(!isset($_SESSION['uid'])){
                             while($doctorData = mysqli_fetch_array($result)){
                              ?>
                               <option value="<?= $doctorData['doctorid'] ?>">
-                                <?= $doctorData['name'] ?> | <?= $doctorData['speciality'] ?>| <?= $doctorData['timing_days'] ?> | PKR <?= $doctorData['fee'] ?>
+                                <?= $doctorData['name'] ?> | <?= $doctorData['speciality'] ?>| <?= $doctorData['day_timing'] ?> | PKR <?= $doctorData['fee'] ?>
                               </option>
                              <?php
                             }
@@ -114,6 +114,7 @@ if(!isset($_SESSION['uid'])){
 
 <?php
 
+//appointment add hoga
 if(isset($_POST['btnAdd'])){
 
 // print_r($_POST);
@@ -127,10 +128,10 @@ $amount       = $_POST['amount'];
 $token_date   = $_POST['token_date'];
 
 
-$query = "INSERT INTO `opd`( `patient_name`, 
-`father_name`, `gender`,
+$query = "INSERT INTO `opd`( `patient`, 
+`father`, `gender`,
  `contact`, `token_no`, `doctorid`, 
- `amount`, `token_date`) VALUES ('$patient_name',
+ `amount`, `date`) VALUES ('$patient_name',
  '$father_name','$gender','$contact',
  '$token_no','$doctorid','$amount',
  '$token_date')";

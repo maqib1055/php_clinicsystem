@@ -6,6 +6,7 @@ if(!isset($_SESSION['uid'])){
     header('Location: index.php');
 }
 
+//appointment ya opd approve ka code ha jo neeche html table k td mein jo approve ka link ha us se arhi ha id url mein as a get
 if(isset($_GET['approveid'])){
     $approveid = $_GET['approveid'];
     $query = "update opd set status = 'Approve' where opdid = '$approveid'";
@@ -14,6 +15,7 @@ if(isset($_GET['approveid'])){
     }
 }
 
+//yahan appointment delete hongey ap soft delete bhi kr skte woh ziyada behtar ha
 if(isset($_GET['delid'])){
     $delid = $_GET['delid'];
     $query = "delete from opd where opdid = '$delid'";
@@ -51,7 +53,8 @@ if(isset($_GET['delid'])){
          </thead>
          <tbody>
             <?php
-            $query = "SELECT opd.opdid, doctors.name, doctors.speciality, doctors.fee, opd.patient_name, opd.father_name, opd.token_no, opd.token_date, opd.amount, opd.status FROM `opd` inner join doctors on doctors.doctorid = opd.doctorid";
+            //yeh aik detail joins ha jahan opd + doctor ka table join ho rha ha jo doctors majood ha unhi ka appointment laiye ga
+            $query = "SELECT opd.opdid, opd.doctorid, doctors.name, doctors.speciality, doctors.fee, opd.patient, opd.father, opd.token_no, opd.date, opd.amount, opd.status FROM `opd` inner join doctors on doctors.doctorid = opd.doctorid";
             $result = mysqli_query($conn, $query);
             if(mysqli_num_rows($result)>0){
                 while($opd = mysqli_fetch_array($result)){
@@ -60,9 +63,9 @@ if(isset($_GET['delid'])){
                         <td><?= $opd['opdid'] ?></td>
                         <td><?= $opd['token_no'] ?></td>
                         <td><?= $opd['name'] ?? 'N/A' ?> - <?= $opd['speciality'] ?? 'N/A' ?>  </td>
-                        <td><?= $opd['patient_name'] ?>/<?= $opd['father_name'] ?></td>
+                        <td><?= $opd['patient'] ?>/<?= $opd['father'] ?></td>
                         <td><?= $opd['amount'] ?></td>
-                        <td><?= $opd['token_date'] ?></td>
+                        <td><?= $opd['date'] ?></td>
                         <td>
                             <?php  if($opd['status'] == "Approve"){
                                 echo "<span class='badge bg-success'>Approve</span>";
@@ -82,6 +85,7 @@ if(isset($_GET['delid'])){
                             <a href="view_opd.php?delid=<?= $opd['opdid'] ?>" onClick="return confirm('Are you sure you want to delete?')"  ><span class="fa fa-trash text-danger"></span></a>
                             <a href="print_token.php?id=<?= $opd['opdid'] ?>"><span class="fa fa-print text-success"></span></a>
                         
+                            <a href="master.php?id=<?= $opd['doctorid'] ?>" class="btn btn-warning" >Master File</a>
                         
                         </td>
                     </tr>

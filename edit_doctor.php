@@ -6,6 +6,7 @@ if(!isset($_SESSION['uid'])){
     header('Location: index.php');
 }
 
+//url se har bar koi bhi single unique data ayega jise ap update kr skte hain yeh bhi aik trah ki searching ha mger yahan id se login ki screen mein email se ha where ka clause hum filtering ka he kaam ata ha depends on ap kb konsa operator use krte
 if(isset($_GET['id'])){
 
     $id = $_GET['id'];
@@ -43,7 +44,7 @@ if(isset($_GET['id'])){
             </div>
             <div class="form-group mb-2">
                 <label for="">Days/Timing</label>
-                <input type="text" name="days_timing" value="<?= $doctors['timing_days']  ?>" class="form-control">
+                <input type="text" name="days_timing" value="<?= $doctors['day_timing']  ?>" class="form-control">
             </div>
             <div class="form-group mb-2">
                 <label for="">Fee</label>
@@ -69,9 +70,10 @@ if(isset($_POST['btnUpdate'])){
     $days_timing    = $_POST['days_timing'];
     $fee            = $_POST['fee'];
 
+    //indvidual doctor ka data update hoga
     $query = mysqli_query($conn, "UPDATE `doctors` SET `name`='$name',
     `education`='$education',`speciality`='$speciality',
-    `timing_days`='$days_timing',`fee`='$fee' WHERE doctorid = '$doctorid'");
+    `day_timing`='$days_timing',`fee`='$fee' WHERE doctorid = '$doctorid'");
 
     if($query == true){
         echo "<script> alert('doctor updated'); window.location.href='view_doctor.php'; </script>";

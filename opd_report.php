@@ -43,15 +43,17 @@ if(!isset($_SESSION['uid'])){
              <?php
           if(isset($_POST['btnReport'])){
 
+            //yeh date picker k variable ha
             $start = $_POST['start'];
             $end = $_POST['end'];
 
             $total_fees = 0;
 
-            $sql = "SELECT opd.opdid, opd.patient_name, doctors.name as 'doctor_name', opd.token_no, opd.contact, opd.amount, opd.status, opd.token_date
+            //yeh reporting ka code ha joins k sth between 2 dates k darmiyan ka data lata ha ap es yearly/monthly/daily/weekly report dekh skte
+            $sql = "SELECT opd.opdid, opd.patient, doctors.name as 'doctor_name', opd.token_no, opd.contact, opd.amount, opd.status, opd.date
             from opd
             inner join doctors on doctors.doctorid = opd.doctorid
-            where opd.token_date BETWEEN '$start' and '$end'";
+            where opd.date BETWEEN '$start' and '$end'";
 
             $result = mysqli_query($conn, $sql);
 
@@ -64,13 +66,14 @@ if(!isset($_SESSION['uid'])){
                    <tr>
                          
                          <td><?= $opdData['token_no'] ?></td>
-                         <td><?= $opdData['patient_name'] ?></td>
+                         <td><?= $opdData['patient'] ?></td>
                          <td><?= $opdData['doctor_name'] ?></td>
                          <td><?= $opdData['contact'] ?></td>
                          <td><?= $opdData['amount'] ?></td>
-                         <td><?= $opdData['token_date'] ?></td>
+                         <td><?= $opdData['date'] ?></td>
                         
                           <td>
+                            //simple condition ha status approve ha ya nahi
                             <?php  if($opdData['status'] == "Approve"){
                                 echo "<span class='badge bg-success'>Approve</span>";
                             }else{
@@ -79,6 +82,7 @@ if(!isset($_SESSION['uid'])){
                         </td>
                         <td>
                             <?php 
+                            //approve krne k liye condition lagai ha tah k link se approve ho sake 
                              if($opdData['status'] == "Pending"){
                                 ?>
                                  <a href="view_opd.php?approveid=<?= $opdData['opdid'] ?>" onClick="return confirm('Are you sure you want to approve?')"  ><span class="fa fa-check text-primary"></span></a>

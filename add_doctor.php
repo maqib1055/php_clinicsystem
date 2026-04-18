@@ -18,6 +18,7 @@ if(!isset($_SESSION['uid'])){
     <?php include 'header.php' ?>
 
     <div class="container">
+        
         <form action="add_doctor.php" method="post">
             <div class="form-group mb-2">
                 <label for="">Name</label>
@@ -57,6 +58,7 @@ if(isset($_POST['btnAdd'])){
     $days_timing    = $_POST['days_timing'];
     $fee            = $_POST['fee'];
 
+    //doctor add honge
     $query = mysqli_query($conn, "INSERT INTO `doctors`(`name`, `education`, 
     `speciality`, `timing_days`, `fee`) VALUES ('$name','$education','$speciality',
     '$days_timing','$fee')");

@@ -11,26 +11,13 @@ if(!isset($_SESSION['uid'])){
     header('Location: index.php');
 }
 
-$url = "https://alaqsa.approxsol.com/products.php";
-
+//yeh token generate ka code ha eski id view_opd.php k page se td mein se arhi ha view appoinment
 $id = $_GET['id'];
 
-$query = "SELECT opd.opdid, doctors.name, doctors.speciality, doctors.fee, opd.patient_name, opd.father_name, opd.token_no, opd.token_date, opd.amount, opd.status FROM `opd` inner join doctors on doctors.doctorid = opd.doctorid where opd.opdid = '$id'";
+$query = "SELECT opd.opdid, doctors.name, doctors.speciality, doctors.fee, opd.patient, opd.father, opd.token_no, opd.date, opd.amount, opd.status FROM `opd` inner join doctors on doctors.doctorid = opd.doctorid where opd.opdid = '$id'";
 
 $result = mysqli_query($conn, $query);
 $slipData = mysqli_fetch_array($result);
-
-
-//QR Code 
-$token_no = $slipData['token_no'];
-$qrcode = "https://quickchart.io/qr?text='".urlencode($token_no)."'";
-
-//barcode
-
-$generator = new Picqer\Barcode\BarcodeGeneratorPNG();
-
-$barcodeImg = "barcode/" . time() . ".png";
-file_put_contents($barcodeImg, $generator->getBarcode($token_no, $generator::TYPE_CODE_128));
 
 
 ?>
@@ -74,17 +61,17 @@ hr{
     
 <div class="center">
     <h3>Mini Clinic</h3>
-    <img src="<?= $barcodeImg ?>" alt="">
+   
 </div>
 
 <hr>
 
 <p><div class="large"> <?= $slipData['token_no'] ?> </div></p>
-<p><b>Date:</b> <?= $slipData['token_date'] ?></p>
+<p><b>Date:</b> <?= $slipData['date'] ?></p>
 
 <hr>
 
-<p><b>Patient</b> <?= $slipData['patient_name'] ?>/<?= $slipData['father_name'] ?> <b>Doctor:</b> <?= $slipData['name'] ?></p>
+<p><b>Patient</b> <?= $slipData['patient'] ?>/<?= $slipData['father'] ?> <b>Doctor:</b> <?= $slipData['name'] ?></p>
 
 <hr>
 
@@ -96,8 +83,6 @@ hr{
     Thank You <br>
     Get Well Soon <br>
 
-    <img src="<?= $qrcode ?>" alt="">
-   
 </div>
 
 

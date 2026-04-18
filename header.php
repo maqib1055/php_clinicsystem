@@ -1,3 +1,4 @@
+<!-- yahan sare links ha jo har page pe include honge tah k har bar navbar na banani prhe -->
 <!-- bootstrap -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
@@ -39,9 +40,13 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a href="exportreport.php" class="nav-link">Export CSV</a>
+          <a href="demoreport.php" class="nav-link">Export CSV</a>
         </li>
         <li class="nav-item">
+          <a href="label.php" class="nav-link">Barcode/QRCode</a>
+        </li>
+        <li class="nav-item">
+          //yahan login hone k bd user name naam show hoga
          <span class="text-dark"> Welcome to <?= $_SESSION['uname']  ?> </span> 
         </li>
         <li>

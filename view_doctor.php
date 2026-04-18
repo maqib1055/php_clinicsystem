@@ -6,6 +6,7 @@ if(!isset($_SESSION['uid'])){
     header('Location: index.php');
 }
 
+//doctor delete honge
 if(isset($_GET['delid'])){
     $id = $_GET['delid'];
    // $query = "delete from doctors where doctorid = '$id'";
@@ -46,6 +47,7 @@ if(isset($_GET['delid'])){
          </thead>
          <tbody>
             <?php
+            //doctor sare show ho rhe hein
             $query = "select * from doctors where status = 1";
             $result = mysqli_query($conn, $query);
             if(mysqli_num_rows($result)>0){
@@ -56,7 +58,7 @@ if(isset($_GET['delid'])){
                         <td><?= $doctors['name'] ?></td>
                         <td><?= $doctors['education'] ?></td>
                         <td><?= $doctors['speciality'] ?></td>
-                        <td><?= $doctors['timing_days'] ?></td>
+                        <td><?= $doctors['day_timing'] ?></td>
                         <td><?= $doctors['fee'] ?></td>
                         <td>
                             <?php  if($doctors['status'] == 1){
